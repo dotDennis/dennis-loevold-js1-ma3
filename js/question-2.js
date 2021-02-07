@@ -12,8 +12,6 @@ async function getGames() {
 
     const data = result.results;
 
-    container.classList.remove("loader");
-
     for (let i = 0; i < data.length; i++) {
       if (i === 8) break;
 
@@ -24,8 +22,9 @@ async function getGames() {
       container.innerHTML += gameContainers(name, rating, tags);
     }
   } catch (error) {
-    container.classList.remove("loader");
     container.innerHTML = getError("Woops!", error);
+  } finally {
+    container.classList.remove("loader");
   }
 }
 
